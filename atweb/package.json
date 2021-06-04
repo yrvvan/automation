@@ -1,0 +1,60 @@
+{
+  "name": "automation-web",
+  "version": "1.0.0",
+  "description": "Automation WEBUI",
+  "main": "index.js",
+  "scripts": {
+    "clean-reports": "rm -rf cypress/reports/results/*.json cypress/reports/features cypress/reports/index.html cypress/reports/* cypress/screenshots/* cypress/videos/*",
+    "cypress": "npm run clean-reports & ./node_modules/.bin/cypress-tags run --spec \"cypress/integration/*.feature\"",
+    "cypress-ui": "./node_modules/.bin/cypress open",
+    "reports": "node cypress/cypress_report.js",
+    "open-reports": "open 'cypress/reports/index.html'",
+    "combine-reports": "mkdir cypress/reports/mochareports && mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
+    "generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports"
+  },
+  "author": "Irwan Rosyadi",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^5.0.0",
+    "cypress-cucumber-preprocessor": "^2.5.4",
+    "dotenv": "^8.2.0",
+    "multiple-cucumber-html-reporter": "^1.18.0",
+    "cypress-multi-reporters": "^1.4.0"
+  },
+  "devDependencies": {
+    "cypress-file-upload": "^4.1.1",
+    "cypress-xpath": "^1.6.2",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.1.1",
+    "mochawesome": "^6.1.1",
+    "mochawesome-merge": "^4.1.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/reports/results",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "./node_modules/.bin/eslint"
+    ]
+  }
+}

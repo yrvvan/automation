@@ -1,0 +1,54 @@
+{
+    "name": "bl-automation-api",
+    "version": "1.0.0",
+    "description": "API automation test",
+    "main": "index.js",
+    "license": "ISC",
+    "scripts": {
+        "test-bl": "./node_modules/mocha/bin/mocha ./test --recursive --reporter mochawesome --reporter-options reportDir=atapi/reports/mochawesome/ --timeout 30000"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "./node_modules/.bin/eslint"
+        ]
+    },
+    "eslintIgnore": [
+        "node_modules"
+    ],
+    "author": "Irwan Rosyadi",
+    "dependencies": {
+        "chai": "^4.2.0",
+        "chai-arrays": "^2.2.0",
+        "chai-counting": "^1.0.1",
+        "chai-json-schema": "^1.5.1",
+        "chai-things": "^0.2.0",
+        "dotenv": "^8.2.0",
+        "mem": ">=4.0.0",
+        "mocha-retry": "^0.1.0",
+        "mochawesome": "^3.0.2",
+        "moment": "^2.29.1",
+        "supertest": "^4.0.2",
+        "supertest-with-proxy": "^5.0.2"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-base": "^13.2.0",
+        "eslint-config-standard": "^14.0.1",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-mocha": "^6.2.2",
+        "eslint-plugin-node": "^9.1.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "husky": "^3.1.0",
+        "lint-staged": "^9.4.2",
+        "mocha": "^8.1.1",
+        "mochawesome": "^6.1.1",
+        "mochawesome-merge": "^4.1.0"
+    }
+}
