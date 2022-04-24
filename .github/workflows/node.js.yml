@@ -28,11 +28,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    
-    - name: Install Dependencies
-    - run: |
-        npm install
-        npm run build --if-present
-        npm test
-      
   
